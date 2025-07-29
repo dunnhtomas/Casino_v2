@@ -25,7 +25,7 @@ export const metadata: Metadata = seoManager.generateMetadata({
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
+    <>
       {/* 1. HERO BANNER */}
       <section className="bg-gradient-to-br from-brand-primary to-blue-800 text-white">
         <div className="container mx-auto px-4 py-16">
@@ -531,6 +531,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   );
 }
