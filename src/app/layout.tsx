@@ -3,7 +3,8 @@ import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { ServerStructuredData } from '@/components/StructuredData';
 import { getHomePageStructuredData } from '@/lib/structured-data';
-import { ClientComplianceWrapper } from '@/components/compliance/ClientComplianceWrapper';
+import Navigation from '@/components/layout/Navigation';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -93,9 +94,11 @@ export default function RootLayout({
         <ServerStructuredData data={structuredDataArray} />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ClientComplianceWrapper>
+        <Navigation />
+        <main>
           {children}
-        </ClientComplianceWrapper>
+        </main>
+        <Footer />
       </body>
     </html>
   );
