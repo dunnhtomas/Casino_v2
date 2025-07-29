@@ -3,12 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:dev or docker-compose exec app npm run dev'); process.exit(1); }\"",
-    "prebuild": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:build or docker-compose exec app npm run build'); process.exit(1); }\"",
-    "prelint": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:lint or docker-compose exec app npm run lint'); process.exit(1); }\"",
-    "pretest": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:test or docker-compose exec app npm run test'); process.exit(1); }\"",
-    "pretype-check": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:type-check or docker-compose exec app npm run type-check'); process.exit(1); }\"",
-    "prevalidate:docs": "node -e \"if (!process.env.CI && !require('fs').existsSync('/.dockerenv')) { console.error('❌ DOCKER-ONLY: Use npm run docker:validate:docs or docker-compose exec app npm run validate:docs'); process.exit(1); }\"",
     "dev": "npx next dev",
     "build": "npx next build",
     "start": "npx next start",
