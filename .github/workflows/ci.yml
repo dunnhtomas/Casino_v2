@@ -1,0 +1,442 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DATABASE_URL: postgresql://user:pass@localhost:5432/casino_test
+  REDIS_URL: redis://localhost:6379
+  NEXTAUTH_SECRET: test_secret
+  KEITARO_API_KEY: test_key
+
+jobs:
+  # Phase 1: Environment Check
+  env-check:
+    runs-on: ubuntu-latest
+    name: Environment Check
+    steps:
+      - name: Check Docker version
+        run: |
+          docker --version
+          docker-compose --version
+          if [ $? -ne 0 ]; then
+            echo "❌ Docker or Docker Compose not found"
+            exit 1
+          fi
+          echo "✅ Docker environment is ready"
+
+  # Phase 1: Environment File Lint
+  env-file-lint:
+    runs-on: ubuntu-latest
+    name: Environment File Validation
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate .env.local structure
+        run: |
+          if [ ! -f .env.local ]; then
+            echo "❌ .env.local file not found"
+            exit 1
+          fi
+          
+          # Check required keys
+          required_keys=("DATABASE_URL" "REDIS_URL" "NEXTAUTH_SECRET" "KEITARO_API_KEY")
+          for key in "${required_keys[@]}"; do
+            if ! grep -q "^${key}=" .env.local; then
+              echo "❌ Missing required key: ${key}"
+              exit 1
+            fi
+          done
+          echo "✅ Environment file structure is valid"
+
+  # Phase 2: Compose Lint
+  compose-lint:
+    runs-on: ubuntu-latest
+    name: Docker Compose Validation
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate docker-compose.yml
+        run: |
+          docker-compose config
+          if [ $? -ne 0 ]; then
+            echo "❌ Docker Compose configuration is invalid"
+            exit 1
+          fi
+          echo "✅ Docker Compose configuration is valid"
+
+  # Phase 3: Prisma Validate
+  prisma-validate:
+    runs-on: ubuntu-latest
+    name: Prisma Schema Validation
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Validate Prisma schema
+        run: |
+          npx prisma validate
+          npx prisma generate
+          echo "✅ Prisma schema is valid"
+
+  # Phase 5: Build and Type Check
+  build-test:
+    runs-on: ubuntu-latest
+    name: Build & Type Check
+    needs: [env-check, env-file-lint, compose-lint, prisma-validate]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma client
+        run: npx prisma generate
+      
+      - name: Type check
+        run: npm run type-check
+      
+      - name: Lint code
+        run: npm run lint
+      
+      - name: Build application
+        run: npm run build
+        
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+
+  # Phase 7: SEO Validation
+  seo-validation:
+    runs-on: ubuntu-latest
+    name: SEO & Structured Data Validation
+    needs: [build-test]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: pass
+          POSTGRES_USER: user
+          POSTGRES_DB: casino_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma client
+        run: npx prisma generate
+      
+      - name: Run database migrations
+        run: npx prisma migrate deploy
+      
+      - name: Seed database
+        run: npx prisma db seed
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+      
+      - name: Start application
+        run: |
+          npm start &
+          sleep 30
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino_test
+          REDIS_URL: redis://localhost:6379
+      
+      - name: Validate robots.txt
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/robots.txt)
+          if [ "$response" != "200" ]; then
+            echo "❌ robots.txt not accessible"
+            exit 1
+          fi
+          echo "✅ robots.txt is accessible"
+      
+      - name: Check JSON-LD structured data
+        run: |
+          # Check if JSON-LD is present on home page
+          page_content=$(curl -s http://localhost:3000/)
+          if echo "$page_content" | grep -q 'application/ld+json'; then
+            echo "✅ JSON-LD structured data found"
+          else
+            echo "❌ JSON-LD structured data not found"
+            exit 1
+          fi
+
+  # Phase 8: Lighthouse CI Mobile
+  lighthouse-ci-mobile:
+    runs-on: ubuntu-latest
+    name: Lighthouse Mobile Performance
+    needs: [build-test]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: pass
+          POSTGRES_USER: user
+          POSTGRES_DB: casino_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma client
+        run: npx prisma generate
+      
+      - name: Run database migrations
+        run: npx prisma migrate deploy
+      
+      - name: Seed database
+        run: npx prisma db seed
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+      
+      - name: Start application
+        run: |
+          npm start &
+          sleep 30
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino_test
+          REDIS_URL: redis://localhost:6379
+      
+      - name: Run Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          lhci autorun --upload.target=temporary-public-storage
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+  # Phase 10: Health Endpoint Test
+  health-endpoint-test:
+    runs-on: ubuntu-latest
+    name: Health Endpoint Validation
+    needs: [build-test]
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_PASSWORD: pass
+          POSTGRES_USER: user
+          POSTGRES_DB: casino_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      
+      redis:
+        image: redis:7-alpine
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma client
+        run: npx prisma generate
+      
+      - name: Run database migrations
+        run: npx prisma migrate deploy
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: .next/
+      
+      - name: Start application
+        run: |
+          npm start &
+          sleep 20
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino_test
+          REDIS_URL: redis://localhost:6379
+      
+      - name: Test health endpoint
+        run: |
+          response=$(curl -s http://localhost:3000/api/health)
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/health)
+          
+          if [ "$status_code" != "200" ]; then
+            echo "❌ Health endpoint returned status: $status_code"
+            exit 1
+          fi
+          
+          if echo "$response" | jq -e '.status' > /dev/null; then
+            echo "✅ Health endpoint returned valid JSON with status field"
+          else
+            echo "❌ Health endpoint response invalid: $response"
+            exit 1
+          fi
+
+  # Phase 10: Documentation Coverage
+  docs-coverage:
+    runs-on: ubuntu-latest
+    name: Documentation Coverage Validation
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Validate documentation coverage
+        run: npm run validate:docs
+
+  # Integration test with all services
+  integration-test:
+    runs-on: ubuntu-latest
+    name: Full Integration Test
+    needs: [env-check, env-file-lint, compose-lint, prisma-validate]
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create test environment file
+        run: |
+          cp .env.local .env.test
+          sed -i 's/db:5432/localhost:5432/' .env.test
+          sed -i 's/redis:6379/localhost:6379/' .env.test
+      
+      - name: Start services with Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d db redis
+          sleep 10
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Generate Prisma client
+        run: npx prisma generate
+      
+      - name: Run database migrations
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino
+      
+      - name: Seed database
+        run: npx prisma db seed
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino
+      
+      - name: Build and start application
+        run: |
+          npm run build
+          npm start &
+          sleep 30
+        env:
+          DATABASE_URL: postgresql://user:pass@localhost:5432/casino
+          REDIS_URL: redis://localhost:6379
+      
+      - name: Run integration tests
+        run: |
+          # Test main pages
+          curl -f http://localhost:3000/ || exit 1
+          curl -f http://localhost:3000/api/health || exit 1
+          
+          echo "✅ All integration tests passed"
+      
+      - name: Cleanup
+        run: docker-compose down -v

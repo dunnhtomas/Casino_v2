@@ -1,0 +1,184 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Casino {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  logoUrl     String?
+  websiteUrl  String
+  rating      Float    @default(0)
+  reviewCount Int      @default(0)
+  licenseInfo String?
+  established Int?
+  
+  // SEO and Voice Search Metadata
+  metaTitle       String?
+  metaDescription String?
+  voiceSearchTags String[]
+  
+  // Features
+  liveChat        Boolean @default(false)
+  mobileApp       Boolean @default(false)
+  cryptoSupport   Boolean @default(false)
+  vipProgram      Boolean @default(false)
+  
+  // Relations
+  bonuses         Bonus[]
+  reviews         Review[]
+  categories      CasinoCategory[]
+  affiliateClicks AffiliateClick[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("casinos")
+}
+
+model Bonus {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  bonusType   BonusType
+  amount      String
+  wagering    String?
+  validUntil  DateTime?
+  termsUrl    String?
+  
+  // SEO Metadata
+  metaTitle       String?
+  metaDescription String?
+  voiceSearchTags String[]
+  
+  // Relations
+  casino   Casino @relation(fields: [casinoId], references: [id], onDelete: Cascade)
+  casinoId String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("bonuses")
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  iconUrl     String?
+  
+  // SEO Metadata
+  metaTitle       String?
+  metaDescription String?
+  voiceSearchTags String[]
+  
+  // Relations
+  casinos CasinoCategory[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model CasinoCategory {
+  casino     Casino   @relation(fields: [casinoId], references: [id], onDelete: Cascade)
+  casinoId   String
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId String
+
+  @@id([casinoId, categoryId])
+  @@map("casino_categories")
+}
+
+model Review {
+  id        String     @id @default(cuid())
+  title     String
+  slug      String     @unique
+  content   String
+  rating    Float
+  author    String
+  status    ReviewStatus @default(DRAFT)
+  
+  // SEO Metadata
+  metaTitle       String?
+  metaDescription String?
+  voiceSearchTags String[]
+  
+  // Relations
+  casino   Casino @relation(fields: [casinoId], references: [id], onDelete: Cascade)
+  casinoId String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  publishedAt DateTime?
+
+  @@map("reviews")
+}
+
+model FAQ {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  category String?
+  order    Int    @default(0)
+  
+  // Voice Search Optimization
+  voiceSearchTags String[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("faqs")
+}
+
+model AffiliateClick {
+  id         String   @id @default(cuid())
+  campaignId String
+  clickId    String?
+  userAgent  String?
+  ipAddress  String?
+  referer    String?
+  country    String?
+  
+  // Conversion tracking
+  converted    Boolean   @default(false)
+  conversionAt DateTime?
+  revenue      Float?
+  
+  // Relations
+  casino   Casino? @relation(fields: [casinoId], references: [id])
+  casinoId String?
+  
+  createdAt DateTime @default(now())
+
+  @@map("affiliate_clicks")
+}
+
+// Enums
+enum BonusType {
+  WELCOME
+  NO_DEPOSIT
+  FREE_SPINS
+  RELOAD
+  CASHBACK
+  VIP
+}
+
+enum ReviewStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}

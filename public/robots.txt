@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://casino.ca/sitemap.xml
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cms/
+Disallow: /_next/
+Disallow: /assets/private/
+
+# Block crawling of affiliate redirect URLs
+Disallow: /go/
+
+# Allow crawling of important pages
+Allow: /casinos/
+Allow: /bonuses/
+Allow: /reviews/
+Allow: /categories/
+
+# Crawl-delay for responsible crawling
+Crawl-delay: 1
+
+# Specific rules for search engines
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 1

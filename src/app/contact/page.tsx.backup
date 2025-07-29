@@ -1,0 +1,361 @@
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { seoManager } from '@/lib/seo';
+import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
+import { FAQAccordion } from '@/components/ui/FAQAccordion';
+
+export const metadata: Metadata = seoManager.generateMetadata({
+  title: 'Contact Casino.ca - Get in Touch with Our Expert Team',
+  description: 'Contact Casino.ca for casino reviews, questions, or suggestions. Our expert team is here to help Canadian players with honest casino recommendations.',
+  keywords: [
+    'contact casino.ca',
+    'casino review questions',
+    'casino suggestions',
+    'gaming support',
+    'casino help canada'
+  ]
+});
+
+export default function ContactPage() {
+  const contactMethods = [
+    {
+      icon: '📧',
+      title: 'Email Us',
+      description: 'Get in touch via email for detailed inquiries',
+      contact: 'info@casino.ca',
+      responseTime: 'Within 24 hours'
+    },
+    {
+      icon: '💬',
+      title: 'Live Chat',
+      description: 'Chat with our team for quick questions',
+      contact: 'Available on website',
+      responseTime: 'Instant during business hours'
+    },
+    {
+      icon: '📱',
+      title: 'Social Media',
+      description: 'Follow us for updates and quick responses',
+      contact: '@CasinoDotCa',
+      responseTime: 'Within 4 hours'
+    }
+  ];
+
+  const inquiryTypes = [
+    {
+      type: 'Casino Review Request',
+      description: 'Suggest a casino for us to review',
+      icon: '🏪'
+    },
+    {
+      type: 'General Questions',
+      description: 'Ask about our reviews or recommendations',
+      icon: '❓'
+    },
+    {
+      type: 'Technical Issues',
+      description: 'Report website bugs or technical problems',
+      icon: '🔧'
+    },
+    {
+      type: 'Partnership Inquiries',
+      description: 'Business and partnership opportunities',
+      icon: '🤝'
+    },
+    {
+      type: 'Media & Press',
+      description: 'Press inquiries and media requests',
+      icon: '📰'
+    },
+    {
+      type: 'Responsible Gaming',
+      description: 'Questions about responsible gambling resources',
+      icon: '🛡️'
+    }
+  ];
+
+  const faqData = [
+    {
+      question: 'How do you choose which casinos to review?',
+      answer: 'We review casinos based on licensing, reputation, player feedback, game variety, payment options, and customer support quality. We also accept suggestions from our community.'
+    },
+    {
+      question: 'Do you accept payments from casinos for reviews?',
+      answer: 'We maintain complete editorial independence. While we may receive affiliate commissions when players sign up through our links, this never influences our review scores or recommendations.'
+    },
+    {
+      question: 'How often do you update your reviews?',
+      answer: 'We regularly update our reviews to reflect changes in bonuses, game libraries, payment methods, and overall casino performance. Major updates are typically done quarterly.'
+    },
+    {
+      question: 'Can I request a specific casino to be reviewed?',
+      answer: 'Absolutely! We welcome suggestions from our community. Use our contact form to suggest casinos you\'d like us to review, and we\'ll add them to our evaluation queue.'
+    },
+    {
+      question: 'How do I report incorrect information in a review?',
+      answer: 'If you notice outdated or incorrect information in any of our reviews, please contact us immediately with the details. We take accuracy seriously and will investigate and update as needed.'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-casino-red to-casino-gold text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Contact Us
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+            Have questions about online casinos? Need help finding the right casino? 
+            Our expert team is here to help.
+          </p>
+        </div>
+      </section>
+
+      <div className="container mx-auto px-4 py-12">
+        {/* Contact Methods */}
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Get In Touch</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Choose the method that works best for you. Our team is committed to providing 
+              helpful, accurate responses to all inquiries.
+            </p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3">
+            {contactMethods.map((method, index) => (
+              <Card key={index} padding="lg" hover className="text-center">
+                <div className="text-6xl mb-4">{method.icon}</div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{method.title}</h3>
+                <p className="text-gray-600 mb-4">{method.description}</p>
+                <div className="bg-gray-100 rounded-lg p-3 mb-4">
+                  <p className="font-semibold text-gray-900">{method.contact}</p>
+                </div>
+                <p className="text-sm text-gray-500">Response time: {method.responseTime}</p>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Form */}
+        <section className="mb-16">
+          <div className="grid gap-8 lg:grid-cols-2">
+            <Card padding="lg">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+              <form className="space-y-6">
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                      First Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                      placeholder="Your first name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                      Last Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                      placeholder="Your last name"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="inquiryType" className="block text-sm font-medium text-gray-700 mb-2">
+                    Inquiry Type *
+                  </label>
+                  <select
+                    id="inquiryType"
+                    name="inquiryType"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                  >
+                    <option value="">Select inquiry type</option>
+                    <option value="casino-review">Casino Review Request</option>
+                    <option value="general">General Questions</option>
+                    <option value="technical">Technical Issues</option>
+                    <option value="partnership">Partnership Inquiries</option>
+                    <option value="media">Media & Press</option>
+                    <option value="responsible-gaming">Responsible Gaming</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                    placeholder="Brief subject line"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    Message *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={6}
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-casino-red focus:border-transparent"
+                    placeholder="Please provide as much detail as possible..."
+                  ></textarea>
+                </div>
+                <div className="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    name="newsletter"
+                    className="mt-1 mr-3"
+                  />
+                  <label htmlFor="newsletter" className="text-sm text-gray-600">
+                    I would like to receive updates about new casino reviews and industry news
+                  </label>
+                </div>
+                <Button size="lg" className="w-full">
+                  Send Message
+                </Button>
+              </form>
+            </Card>
+
+            {/* Inquiry Types */}
+            <div className="space-y-6">
+              <Card padding="lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">What Can We Help With?</h3>
+                <div className="space-y-4">
+                  {inquiryTypes.map((inquiry, index) => (
+                    <div key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
+                      <span className="text-2xl">{inquiry.icon}</span>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">{inquiry.type}</h4>
+                        <p className="text-sm text-gray-600">{inquiry.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              {/* Response Times */}
+              <Card padding="lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Response Times</h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">General Inquiries</span>
+                    <span className="font-semibold text-casino-red">24 hours</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Technical Issues</span>
+                    <span className="font-semibold text-casino-red">12 hours</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Review Requests</span>
+                    <span className="font-semibold text-casino-red">48 hours</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Partnership Inquiries</span>
+                    <span className="font-semibold text-casino-red">3-5 days</span>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Office Information */}
+        <section className="mb-16">
+          <Card padding="lg">
+            <div className="grid gap-8 lg:grid-cols-2">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Our Office</h2>
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
+                    <p className="text-gray-600">
+                      Casino.ca Headquarters<br />
+                      123 Bay Street, Suite 2500<br />
+                      Toronto, ON M5K 1A1<br />
+                      Canada
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Business Hours</h3>
+                    <p className="text-gray-600">
+                      Monday - Friday: 9:00 AM - 6:00 PM EST<br />
+                      Saturday: 10:00 AM - 4:00 PM EST<br />
+                      Sunday: Closed
+                    </p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Languages</h3>
+                    <p className="text-gray-600">
+                      We provide support in English and French to serve all Canadian players.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Quick Links</h3>
+                <div className="space-y-3">
+                  <a href="/about" className="block text-casino-red hover:text-casino-red/80 transition-colors">
+                    → About Our Team
+                  </a>
+                  <a href="/responsible-gambling" className="block text-casino-red hover:text-casino-red/80 transition-colors">
+                    → Responsible Gaming Resources
+                  </a>
+                  <a href="/privacy-policy" className="block text-casino-red hover:text-casino-red/80 transition-colors">
+                    → Privacy Policy
+                  </a>
+                  <a href="/cookie-policy" className="block text-casino-red hover:text-casino-red/80 transition-colors">
+                    → Cookie Policy
+                  </a>
+                  <Link href="/casinos" className="block text-casino-red hover:text-casino-red/80 transition-colors">
+                    → Browse Casino Reviews
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </section>
+
+        {/* FAQ */}
+        <section>
+          <Card padding="lg">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+            <FAQAccordion items={faqData} />
+          </Card>
+        </section>
+      </div>
+    </div>
+  );
+}
+

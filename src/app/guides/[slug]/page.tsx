@@ -1,0 +1,1 @@
+export default function GuideDetailPage() { return <div>Guide page works</div>; }

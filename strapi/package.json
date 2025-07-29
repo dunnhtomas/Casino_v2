@@ -1,0 +1,33 @@
+{
+  "name": "casino-strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application for Casino CMS",
+  "scripts": {
+    "build": "strapi build",
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.27.1",
+    "@strapi/plugin-users-permissions": "4.27.1",
+    "@strapi/plugin-i18n": "4.27.1",
+    "@strapi/provider-database-postgres": "4.27.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "styled-components": "5.3.3"
+  },
+  "author": {
+    "name": "Casino Team"
+  },
+  "strapi": {
+    "uuid": "a8b85c3a-4e5b-4f5e-9b5e-8f5e4b5c8f5e"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

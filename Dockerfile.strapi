@@ -1,0 +1,37 @@
+# Strapi v4 Dockerfile
+FROM node:18-alpine
+
+WORKDIR /opt/app
+
+# Install dependencies for building native modules
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    libc6-compat \
+    vips-dev
+
+# Create strapi user
+RUN addgroup -g 1001 -S strapi && \
+    adduser -S strapi -u 1001
+
+# Copy package files
+COPY strapi/package*.json ./
+
+# Install dependencies
+RUN npm ci --only-production
+
+# Copy app source
+COPY strapi/ .
+
+# Build the admin
+RUN npm run build
+
+# Change ownership
+RUN chown -R strapi:strapi /opt/app
+
+USER strapi
+
+EXPOSE 1337
+
+CMD ["npm", "start"]

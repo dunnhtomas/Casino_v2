@@ -1,0 +1,125 @@
+services:
+  db:
+    image: postgres:15-alpine@sha256:1414298ea93186123a6dcf872f778ba3bd2347edcbd2f31aa7bb2d9814ff5393
+    container_name: casino_postgres
+    environment:
+      POSTGRES_DB: casino
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d casino"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - casino_network
+
+  redis:
+    image: redis:7-alpine@sha256:bb186d083732f669da90be8b0f975a37812b15e913465bb14d845db72a4e3e08
+    container_name: casino_redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6380:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - casino_network
+
+  cms:
+    image: node:18-alpine
+    container_name: casino_cms_mock
+    working_dir: /app
+    command: >
+      sh -c "echo 'const express = require(\"express\"); const app = express(); app.use(express.json()); app.get(\"/_health\", (req, res) => res.json({status: \"ok\", uptime: process.uptime()})); app.get(\"/api/games\", (req, res) => res.json({data: [{id: 1, title: \"Slots\", category: \"casino\"}, {id: 2, title: \"Blackjack\", category: \"table\"}]})); app.get(\"/api/promotions\", (req, res) => res.json({data: [{id: 1, title: \"Welcome Bonus\", description: \"100% up to \$500\"}]})); app.listen(1337, \"0.0.0.0\", () => console.log(\"Mock CMS running on port 1337\"));' > server.js && npm init -y && npm install express && node server.js"
+    environment:
+      NODE_ENV: development
+    ports:
+      - "1337:1337"
+    depends_on:
+      db:
+        condition: service_healthy
+    # healthcheck:
+    #   test: ["CMD", "sh", "-c", "echo 'const http = require(\"http\"); const req = http.request(\"http://localhost:1337/_health\", res => process.exit(res.statusCode === 200 ? 0 : 1)); req.on(\"error\", () => process.exit(1)); req.end();' | node"]  
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 10s
+    networks:
+      - casino_network
+
+  # keitaro:
+  #   image: postaffiliate/keitaro:latest
+  #   container_name: casino_keitaro
+  #   environment:
+  #     DB_HOST: db
+  #     DB_NAME: keitaro
+  #     DB_USER: user
+  #     DB_PASSWORD: pass
+  #     REDIS_HOST: redis
+  #     REDIS_PORT: 6379
+  #   volumes:
+  #     - keitaro_data:/var/www/keitaro
+  #   ports:
+  #     - "8081:80"
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #     redis:
+  #       condition: service_healthy
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost/admin"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 90s
+  #   networks:
+  #     - casino_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    container_name: casino_app
+    environment:
+      DATABASE_URL: postgresql://user:pass@db:5432/casino
+      REDIS_URL: redis://redis:6379
+      NEXTAUTH_SECRET: secure_secret
+      KEITARO_API_KEY: your_keitaro_key
+      STRAPI_URL: http://cms:1337
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      # cms:
+      #   condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - casino_network
+
+volumes:
+  db_data:
+  redis_data:
+  cms_data:
+  keitaro_data:
+
+networks:
+  casino_network:
+    driver: bridge

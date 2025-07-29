@@ -1,0 +1,405 @@
+{
+  "pages": {
+    "/api/affiliate/postback/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/affiliate/postback/route-3438d53bee9cffb7.js"
+    ],
+    "/api/bonuses/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/bonuses/route-3438d53bee9cffb7.js"
+    ],
+    "/api/casinos/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/casinos/route-3438d53bee9cffb7.js"
+    ],
+    "/api/compliance/geo-check/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/compliance/geo-check/route-3438d53bee9cffb7.js"
+    ],
+    "/api/games/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/games/route-3438d53bee9cffb7.js"
+    ],
+    "/api/keitaro/redirect/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/keitaro/redirect/route-3438d53bee9cffb7.js"
+    ],
+    "/api/health/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/api/health/route-3438d53bee9cffb7.js"
+    ],
+    "/sitemap.xml/route": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/sitemap.xml/route-3438d53bee9cffb7.js"
+    ],
+    "/global-error": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/global-error-7a299f4fd9ca21b9.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/css/633b749f6e954497.css",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/layout-3d53f1f6a04eea7a.js"
+    ],
+    "/error": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/error-6f1aa60ebe213ced.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/not-found-133d870858f6d396.js"
+    ],
+    "/banking/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/banking/page-d17c19c58bda50d1.js"
+    ],
+    "/bonuses/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/8894-bbb7cefdbdcd3b8e.js",
+      "static/chunks/app/bonuses/[slug]/page-fbcb619f29ed5874.js"
+    ],
+    "/casinos/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/8894-bbb7cefdbdcd3b8e.js",
+      "static/chunks/app/casinos/[slug]/page-30da247fa6dd5e7c.js"
+    ],
+    "/games/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/games/[slug]/page-3438d53bee9cffb7.js"
+    ],
+    "/categories/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/categories/[slug]/page-1999e9ae884f3364.js"
+    ],
+    "/guides/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/guides/[slug]/page-3438d53bee9cffb7.js"
+    ],
+    "/jackpots/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/jackpots/page-d17c19c58bda50d1.js"
+    ],
+    "/live-dealer/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/live-dealer/page-d17c19c58bda50d1.js"
+    ],
+    "/promotions/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/promotions/page-d17c19c58bda50d1.js"
+    ],
+    "/reviews/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/reviews/page-ba3379ebc3fbd8cc.js"
+    ],
+    "/reviews/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/reviews/[slug]/page-9113a518e99ff58d.js"
+    ],
+    "/tournaments/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/tournaments/page-d17c19c58bda50d1.js"
+    ],
+    "/_not-found/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/_not-found/page-3438d53bee9cffb7.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/about/page-bb6835205da79ea4.js"
+    ],
+    "/bonuses/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/bonuses/page-39bd9d6d880324bb.js"
+    ],
+    "/casinos/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/casinos/page-08b6921d6ed1f467.js"
+    ],
+    "/cookie-policy/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/cookie-policy/page-3438d53bee9cffb7.js"
+    ],
+    "/categories/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/categories/page-f1090ea409ba3b35.js"
+    ],
+    "/contact/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/contact/page-0c4659edc53b9556.js"
+    ],
+    "/games/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/6661-075535fe7f2643a3.js",
+      "static/chunks/app/games/page-c93bc9d7f228d0c3.js"
+    ],
+    "/guides/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/6661-075535fe7f2643a3.js",
+      "static/chunks/app/guides/page-3b4b505c16f840bf.js"
+    ],
+    "/licenses/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/licenses/page-d17c19c58bda50d1.js"
+    ],
+    "/privacy-policy/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/privacy-policy/page-3438d53bee9cffb7.js"
+    ],
+    "/news/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/news/[slug]/page-b97982e5e4b72247.js"
+    ],
+    "/mobile/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/mobile/page-b97982e5e4b72247.js"
+    ],
+    "/news/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/news/page-d17c19c58bda50d1.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/6766-0ebe98180bc59e67.js",
+      "static/chunks/6661-075535fe7f2643a3.js",
+      "static/chunks/app/page-ee67815097ff3228.js"
+    ],
+    "/privacy/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/privacy/page-b3770ea3361c49e3.js"
+    ],
+    "/providers/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/3065-3bea6c0e9c8dce8b.js",
+      "static/chunks/app/providers/page-696efc0d98ec7373.js"
+    ],
+    "/providers/[slug]/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/providers/[slug]/page-5823bd2932d532b6.js"
+    ],
+    "/responsible-gambling/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/6661-075535fe7f2643a3.js",
+      "static/chunks/app/responsible-gambling/page-3b4b505c16f840bf.js"
+    ],
+    "/payments/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/3065-3bea6c0e9c8dce8b.js",
+      "static/chunks/app/payments/page-823431b33811c9fa.js"
+    ],
+    "/seo-test/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/app/seo-test/page-ab39a935a1654b63.js"
+    ],
+    "/support/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/support/page-b3770ea3361c49e3.js"
+    ],
+    "/security/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/security/page-d17c19c58bda50d1.js"
+    ],
+    "/terms-of-service/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/app/terms-of-service/page-d17c19c58bda50d1.js"
+    ],
+    "/vip/page": [
+      "static/chunks/webpack-4dfab8a4f299fcfa.js",
+      "static/chunks/4bd1b696-223acfa09453497a.js",
+      "static/chunks/5964-bf304178374af7d1.js",
+      "static/chunks/main-app-cc34a8a8cf65008c.js",
+      "static/chunks/4277-267c4a833e85f2d0.js",
+      "static/chunks/6874-849548aed8b83b7c.js",
+      "static/chunks/app/vip/page-b97982e5e4b72247.js"
+    ]
+  }
+}

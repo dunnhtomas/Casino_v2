@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start Casino App",
+			"type": "shell",
+			"command": "cmd",
+			"args": [
+				"/c",
+				"set DATABASE_URL=postgresql://user:pass@localhost:5433/casino && set REDIS_URL=redis://localhost:6380 && node .next/standalone/server.js"
+			],
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

@@ -1,0 +1,97 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import { seoManager } from '@/lib/seo';
+import { Card } from '@/components/ui/Card';
+import { RatingStars } from '@/components/ui/RatingStars';
+import { Button } from '@/components/ui/Button';
+import { FAQAccordion } from '@/components/ui/FAQAccordion';
+
+// Mock data - In real app, this would come from database/CMS
+const mockGames = [
+  {
+    slug: 'mega-moolah',
+    name: 'Mega Moolah',
+    provider: 'Microgaming',
+    type: 'Progressive Jackpot Slot',
+    theme: 'African Safari',
+    rtp: 88.12,
+    volatility: 'Medium',
+    paylines: 25,
+    minBet: 0.25,
+    maxBet: 6.25,
+    maxWin: 'Progressive Jackpot',
+    releaseDate: '2006-10-01',
+    rating: 4.6,
+    reviewCount: 1234,
+    features: ['Wild Symbol', 'Scatter Symbol', 'Free Spins', 'Progressive Jackpot'],
+    description: 'Mega Moolah is the world\\'s most famous progressive jackpot slot, known for creating millionaires with its massive payouts.',
+    gameplayFeatures: [
+      'Four-level progressive jackpot system',
+      'Free spins with 3x multiplier',
+      'Wild lions substitute for all symbols except scatter'
+    ],
+    symbolPayouts: [
+      { symbol: 'Lion (Wild)', payout: '15,000 coins for 5' },
+      { symbol: 'Elephant', payout: '1,000 coins for 5' }
+    ],
+    whereToPlay: [
+      { casino: 'Spin Casino', bonus: '100% up to \,000', rating: 4.8 }
+    ]
+  }
+];
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const game = mockGames.find(g => g.slug === slug);
+  
+  if (!game) {
+    return {
+      title: 'Game Not Found',
+      description: 'The requested game could not be found.'
+    };
+  }
+
+  return seoManager.generateMetadata({
+    title: \\ Slot Review 2025 - \ Game Guide\,
+    description: \Complete review of \ by \. Learn about RTP, features, and where to play.\,
+    keywords: [game.name.toLowerCase(), 'slot review', 'online slot'],
+    type: 'article',
+    publishedTime: game.releaseDate + 'T00:00:00.000Z',
+    modifiedTime: new Date().toISOString(),
+  });
+}
+
+export function generateStaticParams() {
+  return mockGames.map((game) => ({
+    slug: game.slug,
+  }));
+}
+
+export default async function GameDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const game = mockGames.find(g => g.slug === slug);
+
+  if (!game) {
+    notFound();
+  }
+
+  const faqData = [
+    {
+      id: 'rtp-question',
+      question: \What is the RTP of \?\,
+      answer: \\ has an RTP of \%.\
+    },
+    {
+      id: 'features-question', 
+      question: \What are the key features of \?\,
+      answer: \\ features \.\
+    }
+  ];
+
+  return (
+    <div className=\

@@ -1,0 +1,1 @@
+export default function GameDetailPage() { return <div>Game page works</div>; }
